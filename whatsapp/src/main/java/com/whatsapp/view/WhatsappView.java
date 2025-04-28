@@ -14,6 +14,8 @@ public class WhatsappView {
 			
 			System.out.println("***************MAIN MENU************");
 			System.out.println("press 1 to create profile");
+			System.out.println("press 2 to view profile");
+			System.out.println("press 3 to view all profile");
 			
 			System.out.println("enter your choice");
 			
@@ -25,6 +27,10 @@ public class WhatsappView {
 			
 			switch(choice) {
 			case 1 :  wController.createProfileController();
+				break;
+			case 2 : wController.viewProfile();
+				break;
+			case 3 : wController.viewAllProfileController();
 				break;
 				default : System.out.println("wrong choice");
 			}
