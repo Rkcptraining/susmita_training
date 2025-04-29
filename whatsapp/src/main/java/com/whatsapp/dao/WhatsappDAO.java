@@ -95,6 +95,85 @@ public class WhatsappDAO implements WhatsappDAOInterface {
 		return pp;
 	}
 
+	@Override
+	public int deleteProfileDAO(WhatsappUser wu) throws Exception {
+		Class.forName("com.mysql.jdbc.Driver");
+		
+		Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/rkcpsusmita","root","rajesh");
+		
+		
+		PreparedStatement ps=con.prepareStatement("delete from whatsappuser where email=?");
+		
+		ps.setString(1, wu.getEmail());
+		
+	
+		
+		int i=ps.executeUpdate(); //for insert, delete, update query we will use executeUpdate() method
+									//executeUpdate() method will return int i.e. number of rows affected by query in table
+		
+		
+		return i;
+	}
+
+	@Override
+	public ArrayList<WhatsappUser> searchProfileDAO(WhatsappUser wu) throws Exception {
+		ArrayList<WhatsappUser> pp=new ArrayList<WhatsappUser>();
+		
+		Class.forName("com.mysql.jdbc.Driver");
+		Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/rkcpsusmita","root","rajesh");
+		PreparedStatement ps=null;
+		
+		if(wu.getName() !=null) {
+			ps=con.prepareStatement("select * from whatsappuser where name=?");
+			ps.setString(1, wu.getName());
+		}
+		else {
+			ps=con.prepareStatement("select * from whatsappuser where address=?");
+			ps.setString(1, wu.getAddress());
+		}
+		ResultSet res= ps.executeQuery();
+		
+		while(res.next()) {
+			String n=  res.getString(1);
+			String p=  res.getString(2);
+			String e=  res.getString(3);
+			String a=  res.getString(4);
+			
+			WhatsappUser ww=new WhatsappUser();
+			ww.setName(n);
+			ww.setPassword(p);
+			ww.setEmail(e);
+			ww.setAddress(a);
+			
+			pp.add(ww);
+		}
+		
+		return pp;
+		
+		
+		
+	}
+
+	@Override
+	public int edithProfileDAO(WhatsappUser wu) throws Exception {
+		Class.forName("com.mysql.jdbc.Driver");
+		Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/rkcpsusmita","root","rajesh");
+		PreparedStatement ps=null;
+		
+		if(wu.getPassword() !=null) {
+			ps=con.prepareStatement("update whatsappuser set password=? where email=?");
+			ps.setString(1, wu.getPassword());
+			ps.setString(2, wu.getEmail());
+		}
+		else {
+			ps=con.prepareStatement("update whatsappuser set address=? where email=?");
+			ps.setString(1, wu.getAddress());
+			ps.setString(2, wu.getEmail());
+		}
+		int i=ps.executeUpdate();
+		return i;
+	}
+
 }
 
 

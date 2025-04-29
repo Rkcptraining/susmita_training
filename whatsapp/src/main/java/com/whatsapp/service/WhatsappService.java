@@ -28,4 +28,22 @@ public class WhatsappService implements WhatsappServiceInterface {
 		return wd.viewAllProfileDAO();
 	}
 
+	@Override
+	public int deleteProfileService(WhatsappUser wu) throws Exception {
+		WhatsappDAOInterface wd=new WhatsappDAO();
+		return wd.deleteProfileDAO(wu);
+	}
+
+	@Override
+	public ArrayList<WhatsappUser> searchProfileService(WhatsappUser wu) throws Exception {
+		WhatsappDAOInterface wd=new WhatsappDAO();
+		return wd.searchProfileDAO(wu);
+	}
+
+	@Override
+	public int editProfileService(WhatsappUser wu) throws Exception {
+		WhatsappDAOInterface wd=new WhatsappDAO();
+		return wd.edithProfileDAO(wu);
+	}
+
 }

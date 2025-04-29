@@ -12,4 +12,10 @@ public interface WhatsappServiceInterface {
 
 	ArrayList<WhatsappUser> viewAllProfileService()throws Exception;
 
+	int deleteProfileService(WhatsappUser wu)throws Exception;
+
+	ArrayList<WhatsappUser> searchProfileService(WhatsappUser wu)throws Exception;
+
+	int editProfileService(WhatsappUser wu)throws Exception;
+
 }

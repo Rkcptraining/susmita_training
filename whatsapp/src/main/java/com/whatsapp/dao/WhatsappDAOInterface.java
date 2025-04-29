@@ -12,4 +12,10 @@ public interface WhatsappDAOInterface {
 
 	ArrayList<WhatsappUser> viewAllProfileDAO()throws Exception;
 
+	int deleteProfileDAO(WhatsappUser wu)throws Exception;
+
+	ArrayList<WhatsappUser> searchProfileDAO(WhatsappUser wu)throws Exception;
+
+	int edithProfileDAO(WhatsappUser wu)throws Exception;
+
 }

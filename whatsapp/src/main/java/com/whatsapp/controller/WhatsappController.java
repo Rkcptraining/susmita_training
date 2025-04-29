@@ -102,6 +102,158 @@ public class WhatsappController implements WhatsappControllerInterface {
 		
 	}
 
+	@Override
+	public void deleteProfileController() throws Exception {
+Scanner sc=new Scanner(System.in);
+		
+		System.out.println("enter Email to delete profile");
+		String email=sc.next();
+		
+		WhatsappUser wu=new WhatsappUser();
+		wu.setEmail(email);
+		
+		WhatsappServiceInterface ws=new WhatsappService();
+		int result= ws.deleteProfileService(wu);
+		
+		if(result>0) {
+			System.out.println("Profile deleted");
+		}
+		else {
+			System.out.println("could not delete profile");
+		}
+		
+	}
+
+	@Override
+	public void searchProfileByNameController() throws Exception {
+		Scanner sc=new Scanner(System.in);
+		
+		System.out.println("enter name to search profile");
+		String name=sc.next();
+		
+		WhatsappUser wu=new WhatsappUser();
+		wu.setName(name);
+		
+		WhatsappServiceInterface ws=new WhatsappService();
+		ArrayList<WhatsappUser> allprofile= ws.searchProfileService(wu);
+		
+		if(allprofile.size()>0) {
+			for(WhatsappUser uprofile: allprofile) {
+				System.out.println("***********************************");
+				System.out.println("Name is "+uprofile.getName());
+				System.out.println("Password is "+uprofile.getPassword());
+				System.out.println("Email is "+uprofile.getEmail());
+				System.out.println("Address is "+uprofile.getAddress());
+			}
+		}
+		else {
+			System.out.println("no profile found");
+		}
+		
+		
+		
+	}
+
+	@Override
+	public void searchProfileByAddressController() throws Exception {
+		Scanner sc=new Scanner(System.in);
+		
+		System.out.println("enter address to search profile");
+		String address=sc.next();
+		
+		WhatsappUser wu=new WhatsappUser();
+		wu.setAddress(address);
+		
+		WhatsappServiceInterface ws=new WhatsappService();
+		ArrayList<WhatsappUser> allprofile= ws.searchProfileService(wu);
+		
+		if(allprofile.size()>0) {
+			for(WhatsappUser uprofile: allprofile) {
+				System.out.println("***********************************");
+				System.out.println("Name is "+uprofile.getName());
+				System.out.println("Password is "+uprofile.getPassword());
+				System.out.println("Email is "+uprofile.getEmail());
+				System.out.println("Address is "+uprofile.getAddress());
+			}
+		}
+		else {
+			System.out.println("no profile found");
+		}
+		
+	}
+
+	@Override
+	public void editProfilePasswordController() throws Exception {
+		Scanner sc=new Scanner(System.in);
+		
+		System.out.println("enter Email to edit password");
+		String email=sc.next();
+		
+		WhatsappUser wu=new WhatsappUser();
+		wu.setEmail(email);
+		
+		WhatsappServiceInterface ws=new WhatsappService();
+		WhatsappUser uprofile= ws.viewProfileService(wu);
+		
+		if(uprofile != null) {
+			System.out.println("Your Old Password is "+uprofile.getPassword());
+			System.out.println("Enter New Password");
+			String password=sc.next();
+			
+			WhatsappUser wu1=new WhatsappUser();
+			wu1.setPassword(password);
+			wu1.setEmail(email);
+			
+			int i=ws.editProfileService(wu1);
+			
+			if(i>0) {
+				System.out.println("Password edited");
+			}
+			
+		}
+		else {
+			System.out.println("profile not found");
+		}
+		
+	}
+
+	@Override
+	public void editProfileAddressController() throws Exception {
+		Scanner sc=new Scanner(System.in);
+		
+		System.out.println("enter Email to edit address");
+		String email=sc.next();
+		
+		WhatsappUser wu=new WhatsappUser();
+		wu.setEmail(email);
+		
+		WhatsappServiceInterface ws=new WhatsappService();
+		WhatsappUser uprofile= ws.viewProfileService(wu);
+		
+		if(uprofile != null) {
+			
+			System.out.println("Your Old Address is "+uprofile.getAddress());
+			
+			System.out.println("Enter New Address");
+			String address=sc.next();
+			
+			WhatsappUser wu1=new WhatsappUser();
+			wu1.setAddress(address);
+			wu1.setEmail(email);
+			
+			
+			int i=ws.editProfileService(wu1);
+			if(i>0) {
+				System.out.println("Address edited");
+			}
+			
+		}
+		else {
+			System.out.println("profile not found");
+		}
+		
+	}
+
 }
 
 
