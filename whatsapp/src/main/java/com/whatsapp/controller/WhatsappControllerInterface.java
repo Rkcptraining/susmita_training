@@ -4,20 +4,20 @@ public interface WhatsappControllerInterface {
 	
 	//by default all the methods of an interface will be public and abstract
 
-	void createProfileController()throws Exception;
+	void createProfileController();
 
-	void viewProfile()throws Exception;
+	void viewProfile();
 
-	void viewAllProfileController()throws Exception;
+	void viewAllProfileController();
 
-	void deleteProfileController()throws Exception;
+	void deleteProfileController();
 
-	void searchProfileByNameController()throws Exception;
+	void searchProfileByNameController();
 
-	void searchProfileByAddressController()throws Exception;
+	void searchProfileByAddressController();
 
-	void editProfilePasswordController()throws Exception;
+	void editProfilePasswordController();
 
-	void editProfileAddressController()throws Exception;
+	void editProfileAddressController();
 
 }

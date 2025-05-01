@@ -9,39 +9,39 @@ import com.whatsapp.entity.WhatsappUser;
 public class WhatsappService implements WhatsappServiceInterface {
 
 	@Override
-	public int createProfileService(WhatsappUser wu)throws Exception {
+	public int createProfileService(WhatsappUser wu) {
 		WhatsappDAOInterface wd=new WhatsappDAO();
 		int i=wd.createProfileDAO(wu);
 		return i;
 	}
 
 	@Override
-	public WhatsappUser viewProfileService(WhatsappUser wu) throws Exception {
+	public WhatsappUser viewProfileService(WhatsappUser wu)  {
 		WhatsappDAOInterface wd=new WhatsappDAO();
 		WhatsappUser uprofile =wd.viewProfileDAO(wu);
 		return uprofile;
 	}
 
 	@Override
-	public ArrayList<WhatsappUser> viewAllProfileService() throws Exception {
+	public ArrayList<WhatsappUser> viewAllProfileService()  {
 		WhatsappDAOInterface wd=new WhatsappDAO();
 		return wd.viewAllProfileDAO();
 	}
 
 	@Override
-	public int deleteProfileService(WhatsappUser wu) throws Exception {
+	public int deleteProfileService(WhatsappUser wu)  {
 		WhatsappDAOInterface wd=new WhatsappDAO();
 		return wd.deleteProfileDAO(wu);
 	}
 
 	@Override
-	public ArrayList<WhatsappUser> searchProfileService(WhatsappUser wu) throws Exception {
+	public ArrayList<WhatsappUser> searchProfileService(WhatsappUser wu)  {
 		WhatsappDAOInterface wd=new WhatsappDAO();
 		return wd.searchProfileDAO(wu);
 	}
 
 	@Override
-	public int editProfileService(WhatsappUser wu) throws Exception {
+	public int editProfileService(WhatsappUser wu)  {
 		WhatsappDAOInterface wd=new WhatsappDAO();
 		return wd.edithProfileDAO(wu);
 	}

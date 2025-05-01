@@ -6,16 +6,16 @@ import com.whatsapp.entity.WhatsappUser;
 
 public interface WhatsappDAOInterface {
 
-	int createProfileDAO(WhatsappUser wu)throws Exception;
+	int createProfileDAO(WhatsappUser wu);
 
-	WhatsappUser viewProfileDAO(WhatsappUser wu)throws Exception;
+	WhatsappUser viewProfileDAO(WhatsappUser wu);
 
-	ArrayList<WhatsappUser> viewAllProfileDAO()throws Exception;
+	ArrayList<WhatsappUser> viewAllProfileDAO();
 
-	int deleteProfileDAO(WhatsappUser wu)throws Exception;
+	int deleteProfileDAO(WhatsappUser wu);
 
-	ArrayList<WhatsappUser> searchProfileDAO(WhatsappUser wu)throws Exception;
+	ArrayList<WhatsappUser> searchProfileDAO(WhatsappUser wu);
 
-	int edithProfileDAO(WhatsappUser wu)throws Exception;
+	int edithProfileDAO(WhatsappUser wu);
 
 }

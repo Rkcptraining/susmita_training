@@ -6,16 +6,16 @@ import com.whatsapp.entity.WhatsappUser;
 
 public interface WhatsappServiceInterface {
 
-	int createProfileService(WhatsappUser wu)throws Exception;
+	int createProfileService(WhatsappUser wu);
 
-	WhatsappUser viewProfileService(WhatsappUser wu)throws Exception;
+	WhatsappUser viewProfileService(WhatsappUser wu);
 
-	ArrayList<WhatsappUser> viewAllProfileService()throws Exception;
+	ArrayList<WhatsappUser> viewAllProfileService();
 
-	int deleteProfileService(WhatsappUser wu)throws Exception;
+	int deleteProfileService(WhatsappUser wu);
 
-	ArrayList<WhatsappUser> searchProfileService(WhatsappUser wu)throws Exception;
+	ArrayList<WhatsappUser> searchProfileService(WhatsappUser wu);
 
-	int editProfileService(WhatsappUser wu)throws Exception;
+	int editProfileService(WhatsappUser wu);
 
 }

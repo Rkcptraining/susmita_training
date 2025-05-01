@@ -11,7 +11,7 @@ import com.whatsapp.service.WhatsappServiceInterface;
 public class WhatsappController implements WhatsappControllerInterface {
 
 	@Override
-	public void createProfileController()throws Exception {
+	public void createProfileController() {
 		Scanner sc=new Scanner(System.in);
 		
 		System.out.println("enter name");
@@ -48,7 +48,7 @@ public class WhatsappController implements WhatsappControllerInterface {
 	}
 
 	@Override
-	public void viewProfile() throws Exception {
+	public void viewProfile()  {
 		Scanner sc=new Scanner(System.in);
 		
 		System.out.println("enter Email to view profile");
@@ -74,7 +74,7 @@ public class WhatsappController implements WhatsappControllerInterface {
 	}
 
 	@Override
-	public void viewAllProfileController() throws Exception {
+	public void viewAllProfileController()  {
 		/*
 		int i[]=new int[10];
 		drawback with array is fixed size means we can not resize array based on scenario means static array
@@ -103,7 +103,7 @@ public class WhatsappController implements WhatsappControllerInterface {
 	}
 
 	@Override
-	public void deleteProfileController() throws Exception {
+	public void deleteProfileController()  {
 Scanner sc=new Scanner(System.in);
 		
 		System.out.println("enter Email to delete profile");
@@ -125,7 +125,7 @@ Scanner sc=new Scanner(System.in);
 	}
 
 	@Override
-	public void searchProfileByNameController() throws Exception {
+	public void searchProfileByNameController()  {
 		Scanner sc=new Scanner(System.in);
 		
 		System.out.println("enter name to search profile");
@@ -155,7 +155,7 @@ Scanner sc=new Scanner(System.in);
 	}
 
 	@Override
-	public void searchProfileByAddressController() throws Exception {
+	public void searchProfileByAddressController()  {
 		Scanner sc=new Scanner(System.in);
 		
 		System.out.println("enter address to search profile");
@@ -183,7 +183,7 @@ Scanner sc=new Scanner(System.in);
 	}
 
 	@Override
-	public void editProfilePasswordController() throws Exception {
+	public void editProfilePasswordController()  {
 		Scanner sc=new Scanner(System.in);
 		
 		System.out.println("enter Email to edit password");
@@ -218,7 +218,7 @@ Scanner sc=new Scanner(System.in);
 	}
 
 	@Override
-	public void editProfileAddressController() throws Exception {
+	public void editProfileAddressController()  {
 		Scanner sc=new Scanner(System.in);
 		
 		System.out.println("enter Email to edit address");

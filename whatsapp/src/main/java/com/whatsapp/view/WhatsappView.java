@@ -7,7 +7,7 @@ import com.whatsapp.controller.WhatsappControllerInterface;
 
 public class WhatsappView {
 
-	public static void main(String[] args) throws Exception {
+	public static void main(String[] args)  {
 		String s = "y";
 
 		while (s.equals("y")) {
