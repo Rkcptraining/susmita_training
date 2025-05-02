@@ -1,11 +1,16 @@
 package com.whatsapp.controller;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
 
 import com.whatsapp.entity.WhatsappUser;
+import com.whatsapp.exception.UserNotExistException;
 import com.whatsapp.service.WhatsappService;
 import com.whatsapp.service.WhatsappServiceInterface;
+import com.whatsapp.utility.SortByAddress;
+import com.whatsapp.utility.SortByEmail;
+import com.whatsapp.utility.SortByName;
 
 //if a class will use interface then it is must to write body for all abstract method of interface inside the class
 public class WhatsappController implements WhatsappControllerInterface {
@@ -68,7 +73,13 @@ public class WhatsappController implements WhatsappControllerInterface {
 			System.out.println("Address is "+uprofile.getAddress());
 		}
 		else {
-			System.out.println("profile not found");
+			try {
+			//here UserNotExistException is custom exception
+			throw new UserNotExistException("user with "+wu.getEmail()+" not exist in database");
+			}
+			catch(Exception e) {
+				System.out.println(e);
+			}
 		}
 		
 	}
@@ -88,6 +99,7 @@ public class WhatsappController implements WhatsappControllerInterface {
 		ArrayList<WhatsappUser> allprofile= ws.viewAllProfileService();
 		
 		if(allprofile.size()>0) {
+			System.out.println("Result in unshorted order");
 			for(WhatsappUser uprofile: allprofile) {
 				System.out.println("***********************************");
 				System.out.println("Name is "+uprofile.getName());
@@ -95,6 +107,42 @@ public class WhatsappController implements WhatsappControllerInterface {
 				System.out.println("Email is "+uprofile.getEmail());
 				System.out.println("Address is "+uprofile.getAddress());
 			}
+			System.out.println("***********************************");
+			System.out.println("sorting result depends on name");
+			Collections.sort(allprofile, new SortByName());
+			
+			for(WhatsappUser uprofile: allprofile) {
+				System.out.println("***********************************");
+				System.out.println("Name is "+uprofile.getName());
+				System.out.println("Password is "+uprofile.getPassword());
+				System.out.println("Email is "+uprofile.getEmail());
+				System.out.println("Address is "+uprofile.getAddress());
+			}
+			
+			System.out.println("***********************************");
+			System.out.println("sorting result depends on address");
+			Collections.sort(allprofile, new SortByAddress());
+			
+			for(WhatsappUser uprofile: allprofile) {
+				System.out.println("***********************************");
+				System.out.println("Name is "+uprofile.getName());
+				System.out.println("Password is "+uprofile.getPassword());
+				System.out.println("Email is "+uprofile.getEmail());
+				System.out.println("Address is "+uprofile.getAddress());
+			}
+			
+			System.out.println("***********************************");
+			System.out.println("sorting result depends on email");
+			Collections.sort(allprofile, new SortByEmail());
+			
+			for(WhatsappUser uprofile: allprofile) {
+				System.out.println("***********************************");
+				System.out.println("Name is "+uprofile.getName());
+				System.out.println("Password is "+uprofile.getPassword());
+				System.out.println("Email is "+uprofile.getEmail());
+				System.out.println("Address is "+uprofile.getAddress());
+			}
+			
 		}
 		else {
 			System.out.println("no profile found");

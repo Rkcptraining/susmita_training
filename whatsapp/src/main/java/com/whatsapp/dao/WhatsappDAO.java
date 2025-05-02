@@ -4,9 +4,11 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import com.whatsapp.entity.WhatsappUser;
+import com.whatsapp.exception.UserNotExistException;
 
 //DAO(DATA ACCESS OBJECT) is use to interact with database (mysql) via JDBC(JAVA DATABASE CONNECTIVITY) for insert, delete , update, select query
 
@@ -15,12 +17,13 @@ public class WhatsappDAO implements WhatsappDAOInterface {
 	@Override
 	public int createProfileDAO(WhatsappUser wu) {
 		int i = 0;
+		Connection con =null;
 		try {
 			// TO CONNECT WITH JDBC THERE ARE 4 STEPS
 			// step 1 load driver
 			Class.forName("com.mysql.jdbc.Driver");
 			// step 2 create connection with database
-			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/rkcpsusmita", "root", "rajesh");
+			con= DriverManager.getConnection("jdbc:mysql://localhost:3306/rkcpsusmita", "root", "rajesh");
 
 			// step 3 create query
 			PreparedStatement ps = con.prepareStatement("insert into whatsappuser values(?,?,?,?)");
@@ -34,9 +37,20 @@ public class WhatsappDAO implements WhatsappDAOInterface {
 			i = ps.executeUpdate(); // for insert delete update query we will use executeUpdate() method
 									// executeUpdate() method will return int i.e. number of rows affected by query
 									// in table
+			
 
 		} catch (Exception e) {
 			e.printStackTrace();
+		}
+		//what is purpose of finally block?
+		//finally block will ensure proper termination of program
+		finally {
+			try {
+				con.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		return i;
 	}
@@ -46,6 +60,7 @@ public class WhatsappDAO implements WhatsappDAOInterface {
 
 		WhatsappUser ww = null;
 		try {
+			
 		Class.forName("com.mysql.jdbc.Driver");
 		Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/rkcpsusmita", "root", "rajesh");
 		PreparedStatement ps = con.prepareStatement("select * from whatsappuser where email=?");
@@ -69,7 +84,14 @@ public class WhatsappDAO implements WhatsappDAOInterface {
 			ww.setAddress(a);
 
 		}
-		} catch (Exception e) {
+		else {
+				
+			
+		}
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		catch (SQLException e) {
 			e.printStackTrace();
 		}
 
@@ -78,6 +100,8 @@ public class WhatsappDAO implements WhatsappDAOInterface {
 
 	@Override
 	public ArrayList<WhatsappUser> viewAllProfileDAO() {
+		//what is generic collection?
+		//collection of a specific type
 
 		ArrayList<WhatsappUser> pp = new ArrayList<WhatsappUser>();
 		try {
