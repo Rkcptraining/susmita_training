@@ -1,0 +1,25 @@
+@charset "ISO-8859-1";
+
+h2 {
+	color: red;
+}
+
+#a1 {
+	background-color : cyan;
+}
+#a2 {
+	background-color : pink;
+}
+
+.p1 {
+	background-color : grey;
+}
+
+
+.p2{
+	background-color : lightblue;
+}
+
+body{
+	background-color : yellow;
+}

@@ -6,14 +6,43 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import javax.persistence.EntityTransaction;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
+
 import com.whatsappweb.entity.WhatsappUser;
 
 public class WhatsappDAO implements WhatsappDAOInterface {
+	Session ss;
+	
+	public WhatsappDAO() {
+		SessionFactory sf=new Configuration().configure().buildSessionFactory();
+		ss=sf.openSession();
+	}
 
 	@Override
 	public int createProfileDAO(WhatsappUser wu) {
 		int i = 0;
-		Connection con =null;
+		
+		EntityTransaction et=ss.getTransaction();
+		et.begin();
+			ss.save(wu);
+		et.commit();
+		i=1;
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		/* JDBC
+		  Connection con =null;
+		 
 		try {
 			// TO CONNECT WITH JDBC THERE ARE 4 STEPS
 			// step 1 load driver
@@ -48,6 +77,7 @@ public class WhatsappDAO implements WhatsappDAOInterface {
 				e.printStackTrace();
 			}
 		}
+		*/
 		return i;
 
 }

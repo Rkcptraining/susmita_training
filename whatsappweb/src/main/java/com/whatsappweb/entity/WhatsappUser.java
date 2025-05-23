@@ -1,8 +1,16 @@
 package com.whatsappweb.entity;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "mywhatsapp")
 public class WhatsappUser {
 	private String name;
 	private String password;
+	
+	@Id
 	private String email;
 	private String address;
 	public String getName() {
