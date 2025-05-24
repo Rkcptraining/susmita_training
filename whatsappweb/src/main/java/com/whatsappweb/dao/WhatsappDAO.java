@@ -5,8 +5,10 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 import javax.persistence.EntityTransaction;
+import javax.persistence.Query;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -28,7 +30,7 @@ public class WhatsappDAO implements WhatsappDAOInterface {
 		
 		EntityTransaction et=ss.getTransaction();
 		et.begin();
-			ss.save(wu);
+			ss.save(wu);  //to insert record via hibernate we will use save() method
 		et.commit();
 		i=1;
 		
@@ -85,7 +87,32 @@ public class WhatsappDAO implements WhatsappDAOInterface {
 	@Override
 	public boolean loginProfileDAO(WhatsappUser wu) {
 		boolean i = false;
-		Connection con =null;
+		
+		//via load inbuild method
+		
+		WhatsappUser pp=ss.load(WhatsappUser.class, wu.getEmail()); //to select data we will use load method with 2 parameter 
+		                                                             // first parameter is entity name
+		                                                            //second parameter will be primary key value
+		if(pp!=null) {
+			if(pp.getPassword().equals(wu.getPassword())) {
+				i=true;
+			}
+		}
+		
+		//via HQL query
+		
+		Query q= ss.createQuery("from com.whatsappweb.entity.WhatsappUser w where w.email= :em and w.password= :pw");
+		q.setParameter("em", wu.getEmail());
+		q.setParameter("pw", wu.getPassword());
+		
+		List<WhatsappUser> ll = q.getResultList();
+		
+		if(ll.size()>0) {
+			i=true;
+		}
+		
+		
+		/*Connection con =null;
 		try {
 			
 			Class.forName("com.mysql.jdbc.Driver");
@@ -114,13 +141,15 @@ public class WhatsappDAO implements WhatsappDAOInterface {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		}
+		}*/
 		return i;
 	}
 
 	@Override
 	public WhatsappUser viewProfileDAO(WhatsappUser wu) {
-		WhatsappUser ww = null;
+		
+		WhatsappUser pp=ss.load(WhatsappUser.class, wu.getEmail());
+		/*
 		try {
 			
 		Class.forName("com.mysql.jdbc.Driver");
@@ -156,8 +185,23 @@ public class WhatsappDAO implements WhatsappDAOInterface {
 		catch (SQLException e) {
 			e.printStackTrace();
 		}
-
-		return ww;
+*/
+		return pp;
+	}
+	
+	public List<WhatsappUser> viewAllProfileDAO(WhatsappUser wu) {
+		
+		Query q= ss.createQuery("from com.whatsappweb.entity.WhatsappUser w");
+		
+		return q.getResultList();
+		
+	}
+	
+	public int deleteProfileDAO(WhatsappUser wu) {
+		Query q= ss.createQuery("delete from com.whatsappweb.entity.WhatsappUser w where w.email= :em");
+		q.setParameter("em", wu.getEmail());
+		
+		return q.executeUpdate();
 	}
 }
 
