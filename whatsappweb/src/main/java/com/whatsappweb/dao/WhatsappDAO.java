@@ -14,6 +14,8 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
+import com.whatsappweb.entity.Professor;
+import com.whatsappweb.entity.Student;
 import com.whatsappweb.entity.WhatsappUser;
 
 public class WhatsappDAO implements WhatsappDAOInterface {
@@ -93,6 +95,9 @@ public class WhatsappDAO implements WhatsappDAOInterface {
 		WhatsappUser pp=ss.load(WhatsappUser.class, wu.getEmail()); //to select data we will use load method with 2 parameter 
 		                                                             // first parameter is entity name
 		                                                            //second parameter will be primary key value
+		
+		Student pp1=ss.load(Student.class, "");
+		Professor p2p=ss.load(Professor.class,2);
 		if(pp!=null) {
 			if(pp.getPassword().equals(wu.getPassword())) {
 				i=true;
@@ -100,6 +105,8 @@ public class WhatsappDAO implements WhatsappDAOInterface {
 		}
 		
 		//via HQL query
+		
+		System.out.println(wu.getEmail()+"  "+wu.getPassword());
 		
 		Query q= ss.createQuery("from com.whatsappweb.entity.WhatsappUser w where w.email= :em and w.password= :pw");
 		q.setParameter("em", wu.getEmail());
@@ -198,10 +205,17 @@ public class WhatsappDAO implements WhatsappDAOInterface {
 	}
 	
 	public int deleteProfileDAO(WhatsappUser wu) {
-		Query q= ss.createQuery("delete from com.whatsappweb.entity.WhatsappUser w where w.email= :em");
-		q.setParameter("em", wu.getEmail());
+		EntityTransaction et=ss.getTransaction();
+		et.begin();
+		System.out.println(wu.getEmail());
+		//Query q= ss.createQuery("delete from com.whatsappweb.entity.WhatsappUser w where w.email= :em");
 		
-		return q.executeUpdate();
+		Query q= ss.createNamedQuery("deleterecord");
+		q.setParameter("em", wu.getEmail());
+		int i=q.executeUpdate();
+		
+		et.commit();
+		return i;
 	}
 }
 

@@ -24,4 +24,10 @@ public class WhatsappService implements WhatsappServiceInterface {
 		return wd.viewProfileDAO(wu);
 	}
 
+	@Override
+	public int deleteProfileService(WhatsappUser ww) {
+		WhatsappDAOInterface wd=new WhatsappDAO();
+		return wd.deleteProfileDAO(ww);
+	}
+
 }

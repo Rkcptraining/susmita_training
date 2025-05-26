@@ -2,26 +2,24 @@ package com.whatsappweb.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+
 @Entity
-@Table(name = "mywhatsapp")
-
-@NamedQueries({
-    @NamedQuery(name = "deleterecord", 
-      query = "delete from com.whatsappweb.entity.WhatsappUser w where w.email= :em"),
-  
-})
-
-public class WhatsappUser {
+@Table(name="mystudent")
+public class Student {
+	
 	private String name;
 	private String password;
 	
 	@Id
 	private String email;
 	private String address;
+	
+	@ManyToOne
+	Professor pp;
+	
 	public String getName() {
 		return name;
 	}
@@ -48,4 +46,5 @@ public class WhatsappUser {
 	}
 	
 	
+
 }

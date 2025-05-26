@@ -10,4 +10,6 @@ public interface WhatsappServiceInterface {
 
 	WhatsappUser viewProfileService(WhatsappUser wu);
 
+	int deleteProfileService(WhatsappUser ww);
+
 }

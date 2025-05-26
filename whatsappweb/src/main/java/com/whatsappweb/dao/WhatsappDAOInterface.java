@@ -10,4 +10,6 @@ public interface WhatsappDAOInterface {
 
 	WhatsappUser viewProfileDAO(WhatsappUser wu);
 
+	int deleteProfileDAO(WhatsappUser ww);
+
 }
