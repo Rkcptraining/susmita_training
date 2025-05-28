@@ -45,6 +45,27 @@
 			
 		}
 		
+		function captcha(){
+			//step 1 how to get XHR inside java script?
+			var xhr =	new XMLHttpRequest();
+		
+		//step 2 how XHR will open connection with backend?
+				xhr.open("GET","CaptchaServlet", true);
+		
+		//step 3 how XHR will send request to backend?
+				xhr.send()
+				
+		//step 4 how XHR will get response from backend?
+				xhr.onreadystatechange = function(){
+			if(xhr.readyState == 4){
+				var response = xhr.responseText;
+				//alert(response);
+				//step 5 how it will display response?
+				document.getElementById("captcharesult").innerHTML=response;
+			}
+		}
+		}
+		
 	</script>
 
 
@@ -69,10 +90,12 @@
 			</tr>
 			<tr>
 				<td>Address</td>
-				<td><input type=text name=ad id=ad></td>
+				<td><input type=text name=ad id=ad onblur="captcha()"></td>
 			</tr>
 			<tr>
-				<td><input type=submit onClick="validate()"></td>
+			<td><div id="captcharesult"></div></td><td><button onClick="captcha()">refresh</button></td>
+			<tr>
+				<td><input type=submit onClick="validate()" disabled></td>
 				
 				<td><input type=reset></td>
 			</tr>
