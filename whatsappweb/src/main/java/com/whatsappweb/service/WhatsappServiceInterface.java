@@ -12,4 +12,6 @@ public interface WhatsappServiceInterface {
 
 	int deleteProfileService(WhatsappUser ww);
 
+	int checkEmailService(WhatsappUser ww);
+
 }

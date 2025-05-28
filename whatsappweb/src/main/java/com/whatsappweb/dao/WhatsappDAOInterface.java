@@ -12,4 +12,6 @@ public interface WhatsappDAOInterface {
 
 	int deleteProfileDAO(WhatsappUser ww);
 
+	int checkEmailDAO(WhatsappUser ww);
+
 }

@@ -46,6 +46,12 @@
   	<description></description>
   	<servlet-class>com.whatsappweb.controller.ViewAllProfileServlet</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>CheckEmailServlet</servlet-name>
+  	<display-name>CheckEmailServlet</display-name>
+  	<description></description>
+  	<servlet-class>com.whatsappweb.controller.CheckEmailServlet</servlet-class>
+  </servlet>
   <servlet-mapping>
   	<servlet-name>RegisterServlet</servlet-name>
   	<url-pattern>/RegisterServlet</url-pattern>
@@ -73,5 +79,9 @@
   <servlet-mapping>
   	<servlet-name>ViewAllProfileServlet</servlet-name>
   	<url-pattern>/ViewAllProfileServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>CheckEmailServlet</servlet-name>
+  	<url-pattern>/CheckEmailServlet</url-pattern>
   </servlet-mapping>
 </web-app>

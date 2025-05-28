@@ -30,4 +30,10 @@ public class WhatsappService implements WhatsappServiceInterface {
 		return wd.deleteProfileDAO(ww);
 	}
 
+	@Override
+	public int checkEmailService(WhatsappUser ww) {
+		WhatsappDAOInterface wd=new WhatsappDAO();
+		return wd.checkEmailDAO(ww);
+	}
+
 }

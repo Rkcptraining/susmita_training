@@ -217,6 +217,20 @@ public class WhatsappDAO implements WhatsappDAOInterface {
 		et.commit();
 		return i;
 	}
+
+	@Override
+	public int checkEmailDAO(WhatsappUser ww) {
+		int i=0;
+		Query q= ss.createQuery("from com.whatsappweb.entity.WhatsappUser w where w.email= :em");
+		q.setParameter("em", ww.getEmail());
+		
+		
+		List<WhatsappUser> ll = q.getResultList();
+		if(ll.size()>0) {
+			i=1;
+		}
+		return i;
+	}
 }
 
 

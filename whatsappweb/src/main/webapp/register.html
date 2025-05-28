@@ -21,6 +21,30 @@
 			alert("hello "+v1);
 		}
 		
+		function checkEmail(){
+			var v1 = document.getElementById("em").value;
+			
+			//step 1 how to get XHR inside java script?
+				var xhr =	new XMLHttpRequest();
+			
+			//step 2 how XHR will open connection with backend?
+					xhr.open("GET","CheckEmailServlet?myemail="+v1, true);
+			
+			//step 3 how XHR will send request to backend?
+					xhr.send()
+					
+			//step 4 how XHR will get response from backend?
+					xhr.onreadystatechange = function(){
+				if(xhr.readyState == 4){
+					var response = xhr.responseText;
+					//alert(response);
+					//step 5 how it will display response?
+					document.getElementById("result").innerHTML=response;
+				}
+			}
+			
+		}
+		
 	</script>
 
 
@@ -33,7 +57,7 @@
 		<table border=5 cellpadding=20>
 			<tr>
 				<td>Name</td>
-				<td><input type=text name=nm id=nm></td>
+				<td><input type=text name=nm id=nm required ></td>
 			</tr>
 			<tr>
 				<td>Password</td>
@@ -41,7 +65,7 @@
 			</tr>
 			<tr>
 				<td>Email</td>
-				<td><input type=email name=em id=em></td>
+				<td><input type=email name=em id=em   onkeyup="checkEmail()"><div id="result"></div></td>
 			</tr>
 			<tr>
 				<td>Address</td>
