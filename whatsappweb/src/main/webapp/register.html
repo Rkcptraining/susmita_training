@@ -66,6 +66,16 @@
 		}
 		}
 		
+		function validatecaptcha(){
+			var v1 = document.getElementById("cc").value;
+			var v2 = document.getElementById("cc1").value;
+			
+			if(v1==v2){
+				alert ("validated");
+				document.getElementById("mybutton").disabled=false;
+			}
+		}
+		
 	</script>
 
 
@@ -85,6 +95,10 @@
 				<td><input type=password name=pass id=pass></td>
 			</tr>
 			<tr>
+				<td>Country</td>
+				<td><select id=contry1><option value=india>India</option><option value=us>US</option></select></td>
+			</tr>
+			<tr>
 				<td>Email</td>
 				<td><input type=email name=em id=em   onkeyup="checkEmail()"><div id="result"></div></td>
 			</tr>
@@ -92,15 +106,15 @@
 				<td>Address</td>
 				<td><input type=text name=ad id=ad onblur="captcha()"></td>
 			</tr>
+			
 			<tr>
-			<td><div id="captcharesult"></div></td><td><button onClick="captcha()">refresh</button></td>
-			<tr>
-				<td><input type=submit onClick="validate()" disabled></td>
+				<td><input type=submit onClick="validate()" id="mybutton" disabled></td>
 				
 				<td><input type=reset></td>
 			</tr>
 		
 		</table>
+		<div id="captcharesult"></div>
 		</form>
 	</div>
 

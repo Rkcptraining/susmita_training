@@ -18,8 +18,8 @@ public class CaptchaServlet extends HttpServlet {
 		PrintWriter out=response.getWriter();
 		out.println("<html><body>");
 		
-		
-		out.println("<input type=text id=cc value="+rnumber+" disabled>");
+		out.println("<table border=5><tr><td><input type=text id=cc value="+rnumber+" disabled></td><td><button type=button onClick=captcha()>refresh</button></td></tr>");
+		out.println("<tr><td>enter the above number <input type=text id=cc1></td><td><button type=button  onClick=validatecaptcha()>validate</button></td></tr></table>");
 		
 		out.println("</body></html>");
 	}
